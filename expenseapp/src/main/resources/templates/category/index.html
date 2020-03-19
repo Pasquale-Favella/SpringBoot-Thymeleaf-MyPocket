@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+<nav th:replace="fragments :: navbar"></nav>
+<div class="container">
+<h1>Categorie di Spesa</h1>
+	<nav th:replace="fragments :: navigationcategoria"></nav>
+	<div th:replace="fragments :: responsivenavigationcategoria"></div>
+<p th:unless="${categories} and ${categories.size()}">Nessuna categoria da mostrare</p>
+<div class="table-responsive-lg">
+<table id="tabella" class="table table-striped">
+	<thead>
+	<tr>
+	<th>ID</th>
+	
+	
+	<th>Categoria</th>
+	
+	</tr>
+	</thead>
+	
+		<tr th:each="category : ${categories}">
+			<td th:text="${category.id}"></td>
+			<td th:text="${category.name}"></td>
+		</tr>
+	</table>
+
+</div>
+</div>
+
+<script th:replace="fragments :: responsivescript" type="text/javascript"></script>
+
+</body>
+</html>

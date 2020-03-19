@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+	<nav th:replace="fragments :: navbar"></nav>
+	<div class="container">
+		<h1>HomePage</h1>
+
+		<nav th:replace="fragments :: navigation"></nav>
+		<div th:replace="fragments :: responsivenavigation"></div>
+		<script th:replace="fragments :: responsivescript" type="text/javascript"></script>
+	</div>
+</body>
+</html>

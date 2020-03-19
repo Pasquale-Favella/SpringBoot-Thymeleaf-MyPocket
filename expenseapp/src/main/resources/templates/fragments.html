@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:fragment="head">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>MyPoket</title>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link th:href="@{/style.css}" rel="stylesheet">
+<script th:src="@{/main.js}"></script>
+
+</head>
+<body>
+	
+	
+	<nav th:fragment="navbar"class="navbar navbar-expand-lg navbar-dark bg-dark">
+ <a class="navbar-brand" href="/">MyP<span class="text-primary">ok</span>et
+		</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link"  href="/">Home </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"href="/expenses">Spese</a>
+      </li>   
+      <li class="nav-item">
+        <a class="nav-link"href="/category">Categorie</a>
+      </li>    
+    </ul>   
+  </div>
+</nav>
+
+	<nav th:fragment="navigation" class="navresp">
+		<ul class="nav">
+			<li class="nav-item"><a class="nav-link" href="/expenses">Lista
+					Spese</a></li>
+			<li class="nav-item"><a class="nav-link" href="/expenses/create">Aggiungi
+					Spesa</a></li>
+			<li class="nav-item"><a class="nav-link" href="/expenses/delete">Elimina Spesa</a></li>
+			<li class="nav-item"><a class="nav-link" href="/charts">Grafica Spese</a></li>
+			
+		</ul>
+	</nav>
+	<nav th:fragment="navigationcategoria" class="navresp">
+		<ul class="nav">
+			<li class="nav-item"><a class="nav-link" href="/category">Lista Categorie</a></li>
+			<li class="nav-item"><a class="nav-link" href="/category/create">Crea Categoria</a></li>
+		</ul>
+	</nav>
+	
+	
+
+<div th:fragment="responsivenavigation" class="dropdown show" >
+  <a class="btn btn-primary my-1 dropdown-toggle" href="/expenses" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Impostazioni Spese
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item"  href="/expenses">Lista
+					Spese</a>
+    <a class="dropdown-item" href="/expenses/create">Aggiungi
+					Spesa</a>
+    <a class="dropdown-item" href="/expenses/delete">Elimina Spesa</a>
+    <a class="dropdown-item"  href="/charts">Grafica Spese</a>
+  </div>
+</div>
+<div th:fragment="responsivenavigationcategoria" class="dropdown show" >
+  <a class="btn btn-primary my-1 dropdown-toggle" href="/expenses" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Impostazioni Categorie
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    
+    <a class="dropdown-item"  href="/category">Lista Categorie</a>
+    <a class="dropdown-item"  href="/category/create">Crea categoria</a>
+  </div>
+</div>
+<script th:fragment="responsivescript" type="text/javascript">
+$(window).resize(function() {
+    if ($(window).width() < 550) {
+		$('.show').css('display','initial');
+    	
+    	$('.navresp').css('display','none');
+    } else {
+		
+		$('.show').css('display','none');
+    	
+    	$('.navresp').css('display','initial');
+        
+    }
+}).resize();
+
+</script>
+</body>
+</html>

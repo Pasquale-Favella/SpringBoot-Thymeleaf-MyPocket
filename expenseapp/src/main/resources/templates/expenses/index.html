@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+<nav th:replace="fragments :: navbar"></nav>
+<div class="container">
+	<h1>Spese</h1>
+	<nav th:replace="fragments :: navigation"></nav>
+	<div th:replace="fragments :: responsivenavigation"></div>
+<p th:unless="${expenses} and ${expenses.size()}">Nessuna spesa da mostrare</p>
+<div class="table-responsive-lg">
+	<table id="tabella" class="table table-striped">
+	<thead>
+	<tr>
+	<th>ID</th>
+	<th>Descrizione</th>
+	<th>Luogo</th>
+	<th>Categoria</th>
+	<th>Data Spesa</th>
+	<th>Importo</th>
+	</tr>
+	</thead>
+	
+		<tr th:each="expense : ${expenses}">
+			<td th:text="${expense.id}"></td>
+			<td th:text="${expense.description}"></td>
+			<td th:text="${expense.location}"></td>
+			<td th:text="${expense.expenseCategory.name}"></td>
+			<td th:text="${expense.expensedate}"></td>
+			<td th:text="${expense.tot} + ' euro'"></td>
+		</tr>
+	</table>
+	</div>
+</div>
+	<script th:replace="fragments :: responsivescript" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready( function () {
+    $('#tabella').DataTable( {
+       
+        paging: false,
+        "info": false
+    });
+} );
+</script>
+</body>
+</html>

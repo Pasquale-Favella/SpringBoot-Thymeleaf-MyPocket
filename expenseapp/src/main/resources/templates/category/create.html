@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+<nav th:replace="fragments :: navbar"></nav>
+<div class="container">
+		<h1>Aggiungi Categoria di spesa</h1>
+		<nav th:replace="fragments :: navigationcategoria"></nav>
+		<div th:replace="fragments :: responsivenavigationcategoria"></div>
+		<form method="post" action="/category/create">
+			<div class="form-group custom">
+				<label>Categoria <input id="custom-input" class="form-control" th:field="${category.name}">
+				</label>
+				<p class="errors" th:errors="${category.name}"></p>
+			</div>
+			
+			<div class="form-group">
+
+				<input class="btn btn-primary" type="submit" value="Aggiungi categoria">
+
+			</div>
+		</form>
+		
+</div>
+<script th:replace="fragments :: responsivescript" type="text/javascript"></script>
+
+</body>
+</html>

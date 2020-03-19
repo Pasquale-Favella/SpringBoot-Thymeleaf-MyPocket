@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body>
+<nav th:replace="fragments :: navbar"></nav>
+	<div class="container">
+		
+		<nav th:replace="fragments :: navigation"></nav>
+		<div th:replace="fragments :: responsivenavigation"></div>
+
+		<div id="container"
+			style="width: 90vw; height: 400px; margin: 0 auto 0 -1em ;"></div>
+	</div>
+	<script th:replace="fragments :: responsivescript" type="text/javascript"></script>
+	
+	<!-- Latest compiled and minified JavaScript -->
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	
+	<script th:inline="javascript">
+	console.log([[${expenses.keySet()}]])
+	console.log([[${expenses.values()}]])
+	let set =[[${expenses.keySet()}]]
+	let value = [[${expenses.values()}]]
+	let dataset= Array(set.length).fill(null).map(() => Array(2).fill(0));
+	for(let i=0;i<set.length;i++){
+		dataset[i].pop()
+		dataset[i].pop()
+		dataset[i].push(value[i])
+		dataset[i].push(set[i])
+	}
+	console.log(dataset)
+	
+    $(function(){
+    Highcharts.chart('container', {
+        chart: {
+        	zoomType: 'x'
+        },
+        title: {
+            text: 'Spese'
+        },
+        
+        xAxis: {
+        	type: 'datetime',
+        	
+           //categories: [[${expenses.values()}]]
+            
+        },
+        yAxis: {
+            min: 0,
+            max:1000,
+            title: {
+                text: 'Euro'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} Euro</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            area: {
+                fillColor: {
+                    linearGradient: {
+                        x1: 0,
+                        y1: 0,
+                        x2: 0,
+                        y2: 1
+                    },
+                    stops: [
+                        [0, Highcharts.getOptions().colors[0]],
+                        [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                    ]
+                },
+                marker: {
+                    radius: 2
+                },
+                lineWidth: 1,
+                states: {
+                    hover: {
+                        lineWidth: 1
+                    }
+                },
+                threshold: null
+            }
+        },
+        series: [{
+        	 type: 'area',
+            name: 'Spesa',
+           // data: [[${expenses.keySet()}]]
+        	data:dataset
+       
+        }]
+    });
+    });
+</script>
+
+</body>
+</html>

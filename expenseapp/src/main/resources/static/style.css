@@ -1,0 +1,25 @@
+.form-check-input{
+	width:25px;
+	height:25px;
+	margin-top:auto ;
+	margin-bottom:auto ;	
+}
+.check-custom{
+	margin-left:.3rem;
+}
+.errors{
+	color:red;
+}
+#custom-input{
+	width: 40rem;
+}
+.highcharts-credits{
+	display:none;
+}
+
+@media only screen and (max-width: 770px) {
+	
+  #custom-input{
+	width: 20rem;
+}
+}

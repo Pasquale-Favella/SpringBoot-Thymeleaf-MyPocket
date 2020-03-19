@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+	<nav th:replace="fragments :: navbar"></nav>
+	<div class="container">
+		<h1>Aggiungi Spesa</h1>
+		<nav th:replace="fragments :: navigation"></nav>
+		<div th:replace="fragments :: responsivenavigation"></div>
+
+		<form method="post" action="/expenses/create">
+			<div class="form-group custom">
+				<label>Descrizione <input id="custom-input" class="form-control" th:field="${expense.description}">
+				</label>
+				<p class="errors" th:errors="${expense.description}"></p>
+			</div>
+			<div class="form-group">
+				<label>Luogo <input class="form-control" th:field="${expense.location}">
+				</label>
+				<p class="errors" th:errors="${expense.location}"></p>
+			</div>
+			<div class="form-group dates">
+				<label>Data Spesa <input type="date"id="data" autocomplete="off"class="form-control"th:field="${expense.expensedate}" required>
+				</label>
+				
+			</div>
+			
+			<div class="form-group">
+				<label>Importo <input class="form-control" th:field="${expense.tot}"required="required">
+				</label>
+				<p class="errors" th:errors="${expense.tot}"></p>
+			</div>
+			<div class="form-group">
+				<label>Categoria 
+				<select th:field="${expense.expenseCategory}">
+				<option th:each="expenseCategory : ${categories}" 
+				th:value="${expenseCategory.id}"
+				th:text="${expenseCategory.name}">
+				</option>
+				</select>
+				
+				</label>
+				<p class="errors" th:errors="${expense.expenseCategory}"></p>
+			</div>
+			<div class="form-group">
+
+				<input class="btn btn-primary" type="submit" value="Aggiungi Spesa">
+
+			</div>
+		</form>
+	</div>
+	<script th:replace="fragments :: responsivescript" type="text/javascript"></script>
+</body>
+</html>
